@@ -1,8 +1,8 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 ---
 
-# Rebasing Strategy
+# Rebase Strategy
 
 When you work with a team and everyone pushing many codes everyday probably you face so many conflict or even sometimes missing or overriding codes in your codebase.
 There are a lot of different strategy to pick as team to prevent those mentioned issues
@@ -23,14 +23,49 @@ Rebasing Will give you the clean and nice linear history so you can track whats 
 
 above photo shows different result in git history for merge strategy lets see how can we do this.
 
-1. first step creating your branch 
+1. first step creating your branch
+   
 ```
 git checkout -b feature_branch main
 ```
 
-2. From base branch then bring some changes in codebase.
-3. Now times to stage and commit your changes with below command.
+1. From base branch then bring some changes in codebase.
+2. Now times to stage and commit your changes with below command.
+   
 ```
 git add .
 git commit -m "message"
 ```
+
+3. imagine your team mate push some changes to your main and your base is very behind of origin base.
+
+```
+//checkout to base branch
+git checkout baseBranch ( main )
+
+//pull latest changes to your local base
+git pull origin baseBranch
+```
+3. now times to rebase your branch to base branch.
+
+```
+// checkout to feature branch
+git checkout featureBranch
+// rebase feature branch from base branch
+
+ git rebase baseBranch ( main )
+
+ // push branch to origin
+ git push origin featureBranch
+```
+
+Now you are safe and none conflict branch from base branch go ahead and make your pull request.
+
+your github history and chart should be like below image now after merge your pull request.
+![simple rebase ](img/rebase-simple-3.png)
+
+## Case 2
+# under writting
+## bonus tips
+
+1. if you want to don't get coughs with many changes always rebase with origin branch so you will not be far behind and rebasing will much easier
